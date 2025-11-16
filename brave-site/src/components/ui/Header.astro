@@ -1,6 +1,4 @@
 ---
-import CartFlyout from '../features/cart/CartFlyout';
-
 export interface Props {
   title?: string;
 }
@@ -59,26 +57,10 @@ const { title = "BRAVE" } = Astro.props;
   </nav>
 </header>
 
-<CartFlyout />
-
 <script>
-  import { setIsCartOpen, getCartItemCount } from '../components/features/cart/cartStore';
-  
+  // Simple cart functionality for now
   document.getElementById('cart-button')?.addEventListener('click', () => {
-    setIsCartOpen(true);
+    // Cart functionality will be implemented later
+    console.log('Cart clicked');
   });
-  
-  // Update cart count
-  const updateCartCount = () => {
-    const count = getCartItemCount();
-    const cartCountElement = document.getElementById('cart-count');
-    if (cartCountElement) {
-      cartCountElement.textContent = count.toString();
-      cartCountElement.style.display = count > 0 ? 'flex' : 'none';
-    }
-  };
-  
-  // Initial update and listen for changes
-  updateCartCount();
-  setInterval(updateCartCount, 1000);
 </script>

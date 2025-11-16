@@ -2,80 +2,15 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/ui/Header.astro';
 import ProductCard from '../../components/ui/ProductCard.astro';
+import { getAllProducts, getProductsByCategory } from '../data/products.js';
 
 const { category = 'all' } = Astro.params;
 
-// Sample products based on BRAVE brand - these would come from your data source
-const allProducts = [
-  {
-    id: "1",
-    name: "BRV Clutch - Black",
-    price: 285,
-    image: "/api/placeholder/400/400",
-    description: "Handcrafted leather clutch with premium hardware",
-    category: "clutches"
-  },
-  {
-    id: "2", 
-    name: "VAMP Mix - Tobacco",
-    price: 325,
-    image: "/api/placeholder/400/400",
-    description: "Stunning leather bag with mixed textures",
-    category: "bags"
-  },
-  {
-    id: "3",
-    name: "ADINKRA Bison",
-    price: 295,
-    image: "/api/placeholder/400/400", 
-    description: "Cultural-inspired leather accessory",
-    category: "accessories"
-  },
-  {
-    id: "4",
-    name: "Mudcloth Detail",
-    price: 245,
-    image: "/api/placeholder/400/400",
-    description: "Traditional mudcloth pattern leather piece",
-    category: "accessories"
-  },
-  {
-    id: "5",
-    name: "BRV Clutch - Neon Orange",
-    price: 295,
-    image: "/api/placeholder/400/400",
-    description: "Vibrant leather clutch with premium finish",
-    category: "clutches"
-  },
-  {
-    id: "6",
-    name: "LARGE PECOS",
-    price: 385,
-    image: "/api/placeholder/400/400",
-    description: "Large leather bag with distinctive styling",
-    category: "bags"
-  },
-  {
-    id: "7",
-    name: "FRINGE 4 DAYZ",
-    price: 265,
-    image: "/api/placeholder/400/400",
-    description: "Stylish clutch with fringe detailing",
-    category: "clutches"
-  },
-  {
-    id: "8",
-    name: "BRV Wallet",
-    price: 185,
-    image: "/api/placeholder/400/400",
-    description: "Premium leather wallet with card slots",
-    category: "wallets"
-  }
-];
+const allProducts = getAllProducts();
 
 const filteredProducts = category === 'all' 
   ? allProducts 
-  : allProducts.filter(product => product.category === category);
+  : getProductsByCategory(category);
 
 const pageTitle = category === 'all' ? 'All Products' : category.charAt(0).toUpperCase() + category.slice(1);
 ---

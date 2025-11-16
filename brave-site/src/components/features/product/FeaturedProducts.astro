@@ -1,5 +1,6 @@
 ---
-import ProductCard from '../ui/ProductCard.astro';
+import ProductCard from '../../ui/ProductCard.astro';
+import { getAllProducts } from '../../../pages/data/products.js';
 
 export interface Props {
   title?: string;
@@ -11,44 +12,11 @@ const {
   subtitle = "Discover our handcrafted leather goods"
 } = Astro.props;
 
-// Sample products based on the BRAVE brand - these would come from your data source
-const featuredProducts = [
-  {
-    id: "1",
-    name: "BRV Clutch - Black",
-    price: 285,
-    image: "/api/placeholder/400/400",
-    description: "Handcrafted leather clutch with premium hardware",
-    category: "clutches"
-  },
-  {
-    id: "2", 
-    name: "VAMP Mix - Tobacco",
-    price: 325,
-    image: "/api/placeholder/400/400",
-    description: "Stunning leather bag with mixed textures",
-    category: "bags"
-  },
-  {
-    id: "3",
-    name: "ADINKRA Bison",
-    price: 295,
-    image: "/api/placeholder/400/400", 
-    description: "Cultural-inspired leather accessory",
-    category: "accessories"
-  },
-  {
-    id: "4",
-    name: "Mudcloth Detail",
-    price: 245,
-    image: "/api/placeholder/400/400",
-    description: "Traditional mudcloth pattern leather piece",
-    category: "accessories"
-  }
-];
+const allProducts = getAllProducts();
+const featuredProducts = allProducts.slice(0, 4);
 ---
 
-<section class="py-20 bg-white">
+<section class="py-20 bg-white animate-fade-in">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -68,7 +36,7 @@ const featuredProducts = [
     <div class="text-center mt-12">
       <a 
         href="/collections/all"
-        class="inline-flex items-center px-8 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition-colors"
+        class="btn-primary inline-flex items-center"
       >
         View All Products
         <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

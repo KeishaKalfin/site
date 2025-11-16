@@ -16,7 +16,6 @@ const {
   price, 
   image, 
   description = "", 
-  category = "",
   onSale = false,
   salePrice = 0
 } = Astro.props;
@@ -25,7 +24,7 @@ const displayPrice = onSale && salePrice ? salePrice : price;
 const originalPrice = onSale ? price : null;
 ---
 
-<div class="group cursor-pointer">
+<a href={`/products/${id}`} class="group block cursor-pointer card-hover">
   <div class="relative overflow-hidden bg-gray-100 aspect-square mb-4">
     <img 
       src={image} 
@@ -40,7 +39,7 @@ const originalPrice = onSale ? price : null;
     <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
     <div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       <button class="w-full bg-white text-black py-3 font-semibold hover:bg-gray-100 transition-colors">
-        Quick View
+        View Details
       </button>
     </div>
   </div>
@@ -65,4 +64,4 @@ const originalPrice = onSale ? price : null;
       )}
     </div>
   </div>
-</div>
+</a>
