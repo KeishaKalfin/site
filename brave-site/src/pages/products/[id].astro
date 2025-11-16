@@ -53,16 +53,55 @@ if (!product) {
           </div>
           
           <div class="space-y-4">
+            <button 
+              id="add-to-cart-btn"
+              class="w-full bg-black text-white py-4 font-semibold hover:bg-gray-800 transition-colors block text-center cursor-pointer"
+              data-product-id={product.id}
+              data-product-name={product.name}
+              data-product-price={product.price}
+              data-product-image={product.image}
+            >
+              Add to Cart
+            </button>
             <a 
               href={`/checkout-stripe?product=${product.id}&quantity=1`}
-              class="w-full bg-black text-white py-4 font-semibold hover:bg-gray-800 transition-colors block text-center"
+              class="w-full border-2 border-black text-black py-4 font-semibold hover:bg-black hover:text-white transition-colors block text-center"
             >
               Buy Now
             </a>
-            <button class="w-full border-2 border-black text-black py-4 font-semibold hover:bg-black hover:text-white transition-all">
-              Add to Wishlist
-            </button>
           </div>
+          
+          <script>
+            import { addToCart } from '../../components/features/cart/cartStore';
+            
+            document.getElementById('add-to-cart-btn')?.addEventListener('click', function(e) {
+              e.preventDefault();
+              const button = e.target as HTMLButtonElement;
+              const productId = button.dataset.productId;
+              const productName = button.dataset.productName;
+              const productPrice = parseFloat(button.dataset.productPrice || '0');
+              const productImage = button.dataset.productImage;
+              
+              if (productId && productName && productImage) {
+                addToCart({
+                  id: productId,
+                  name: productName,
+                  price: productPrice,
+                  image: productImage
+                });
+                
+                // Show feedback
+                const originalText = button.textContent;
+                button.textContent = 'Added to Cart!';
+                button.style.backgroundColor = '#10b981';
+                
+                setTimeout(() => {
+                  button.textContent = originalText;
+                  button.style.backgroundColor = '';
+                }, 1500);
+              }
+            });
+          </script>
           
           <div class="border-t pt-6">
             <div class="grid grid-cols-3 gap-4 text-center">

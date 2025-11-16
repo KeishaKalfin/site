@@ -116,4 +116,8 @@ export const products = {
       "Interior card slots",
       "Magnetic closure",
       "Dimensions: 12\" x 8\" x 2\""
-    ]
+    ],
+    category: "clutches",
+    stripePriceId: "price_1SU8JZKJcXfzZs7deTgNi0YG"
+  }
+};

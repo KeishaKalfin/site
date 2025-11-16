@@ -1,5 +1,6 @@
 ---
 import Footer from '../components/ui/Footer.astro';
+import CartFlyout from '../components/features/cart/CartFlyout';
 import '../styles/global.css';
 
 export interface Props {
@@ -25,5 +26,6 @@ const { title, description = "BRAVE - Premium Leather Goods & Accessories" } = A
   <body class="min-h-screen bg-gray-50 flex flex-col">
     <slot />
     <Footer />
+    <CartFlyout client:only="solid-js" />
   </body>
 </html>
